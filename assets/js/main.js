@@ -4,7 +4,7 @@
 // Script web app URL (ends in /exec) that appends each inquiry to the
 // "Lunar Medical – Website Inquiries" sheet; see tools/google-sheet-inquiries.gs.
 // While it is empty, the form falls back to opening the visitor's email app.
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxRhOOngbnG0jeRxaOIOtb3NsFkp3zAwFxa1gwNlT5ApL_-CxA5NJ7Qf3C9bo2NZP3Q/exec";
 const INQUIRY_EMAIL = "admin@lunar-med.com";
 
 document.documentElement.classList.add("js");
