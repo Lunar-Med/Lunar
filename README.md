@@ -24,8 +24,17 @@ python3 -m http.server 8000
 
 ## Contact form
 
-By default the General Inquiries form opens the visitor's email app with the message addressed to `admin@lunar-med.com`.
-To receive submissions directly instead, create a form endpoint (for example with [Formspree](https://formspree.io)) and set `FORM_ENDPOINT` at the top of `assets/js/main.js`. The inbox address is `INQUIRY_EMAIL` in the same file.
+Submissions from the General Inquiries form go to the Google Sheet **Lunar Medical – Website Inquiries** (tab `Inquiries`), with an email notice to `admin@lunar-med.com`.
+
+Setup (one time, by the sheet owner):
+
+1. Open the sheet, then **Extensions → Apps Script**.
+2. Replace the editor contents with `tools/google-sheet-inquiries.gs` and save.
+3. **Deploy → New deployment → Web app**, with *Execute as: Me* and *Who has access: Anyone*. Authorize when asked.
+4. Copy the web app URL (ends in `/exec`) into `FORM_ENDPOINT` at the top of `assets/js/main.js`.
+
+After editing the script later, use **Deploy → Manage deployments → Edit → New version** so the URL stays the same.
+While `FORM_ENDPOINT` is empty, the form opens the visitor's email app addressed to `INQUIRY_EMAIL` instead.
 
 ## Publishing on www.lunar-med.com
 
