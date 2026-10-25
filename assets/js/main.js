@@ -1,9 +1,10 @@
 /* Lunar Medical — site behavior */
 
-// Where general inquiries are delivered. To send submissions to a form
-// service instead of the visitor's email app, set FORM_ENDPOINT to its URL
-// (for example a Formspree endpoint: https://formspree.io/f/xxxxxxx).
-const FORM_ENDPOINT = "";
+// Where general inquiries are delivered. FORM_ENDPOINT is the Google Apps
+// Script web app URL (ends in /exec) that appends each inquiry to the
+// "Lunar Medical – Website Inquiries" sheet; see tools/google-sheet-inquiries.gs.
+// While it is empty, the form falls back to opening the visitor's email app.
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxRhOOngbnG0jeRxaOIOtb3NsFkp3zAwFxa1gwNlT5ApL_-CxA5NJ7Qf3C9bo2NZP3Q/exec";
 const INQUIRY_EMAIL = "admin@lunar-med.com";
 
 document.documentElement.classList.add("js");
@@ -77,12 +78,14 @@ if (form) {
       button.disabled = true;
       setStatus("Sending…");
       try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: data,
-        });
+        // A URL-encoded body keeps this a simple CORS request (no preflight),
+        // which Apps Script web apps require.
+        const body = new URLSearchParams(data);
+        body.set("topic_label", topicLabel);
+        const res = await fetch(FORM_ENDPOINT, { method: "POST", body });
         if (!res.ok) throw new Error(res.statusText);
+        const result = await res.json();
+        if (!result.ok) throw new Error(result.error || "rejected");
         form.reset();
         setStatus("Thank you. Your message has been received and our team will reply within two business days.", "ok");
       } catch (err) {
