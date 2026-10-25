@@ -410,3 +410,42 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
 .center { text-align: center; }
+
+/* ---------- BienVia private label ---------- */
+.bienvia {
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(32px, 5vw, 64px); align-items: center;
+  background: #fff8ee; border: 1px solid #f0e3cf; border-radius: var(--radius-lg);
+  padding: clamp(28px, 5vw, 56px);
+}
+.bienvia-copy { min-width: 0; }
+.bienvia-logo { width: min(280px, 70%); height: auto; margin: 4px 0 18px -10px; }
+.bienvia h2, .bienvia h3 { color: #0b4f5c; font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+.bienvia h2 span, .bienvia h3 span { color: #c2462a; }
+.bienvia .eyebrow { color: #0b4f5c; }
+.bienvia .check-list li::before { background-color: #e3eef0; }
+.bienvia-status { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 0.95rem; color: var(--ink-500); }
+.bienvia-status .tag { margin: 0; }
+.bienvia-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; min-width: 0; }
+.pkg {
+  margin: 0; background: #fff8ee; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 18px 40px rgba(11, 79, 92, 0.16), 0 0 0 1px rgba(11, 79, 92, 0.08);
+  transform: rotate(-1.5deg);
+}
+.pkg + .pkg { transform: rotate(1.5deg) translateY(18px); }
+/* Each window shows one slice of the package artwork (600 x 800 viewBox). */
+.pkg-top, .pkg-art { overflow: hidden; }
+.pkg-top { aspect-ratio: 600 / 144; }
+.pkg-art { aspect-ratio: 600 / 240; padding: 0 0 6px; }
+.pkg-top img, .pkg-art img { width: 100%; max-width: none; height: auto; display: block; }
+.pkg-art img { margin-top: -47.5%; }
+.pkg-name { padding: 14px 6% 4px; font-family: "Poppins", var(--font-head); line-height: 1.2; }
+.pkg-name strong { display: block; color: #0b4f5c; font-size: clamp(1rem, 1.8vw, 1.3rem); font-weight: 800; }
+.pkg-name span { color: var(--ink-500); font-size: 0.9rem; }
+@media (max-width: 900px) { .bienvia { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .pkg, .pkg + .pkg { transform: none; } .bienvia-boxes { gap: 12px; } }
+
+.cat-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.cat-list span {
+  padding: 8px 16px; border-radius: 999px; background: var(--silver-100); border: 1px solid var(--silver-200);
+  font-size: 0.92rem; font-weight: 500; color: var(--ink-700);
+}
