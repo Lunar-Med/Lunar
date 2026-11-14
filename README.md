@@ -7,6 +7,7 @@ It is a static site: plain HTML, CSS and JavaScript with no build step.
 | Page | File |
 | --- | --- |
 | Home | `index.html` |
+| How We Broker (brokerage model, process, compliance, landed cost, figures and sources) | `brokerage.html` |
 | Solutions (sourcing, quality, product portfolio) | `solutions.html` |
 | Partner With Us | `partners.html` |
 | Impact & Philanthropy | `impact.html` |
